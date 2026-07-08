@@ -1,0 +1,29 @@
+Options -ExecCGI -Indexes
+
+<IfModule mod_php7.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+
+<Files "configs.php">
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<FilesMatch "^.*$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.(jpe?g|png|gif|webp|ico|svg|pdf|txt)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+<FilesMatch "\.(php|phtml|php[0-9]|phps|pl|py|sh|cgi|asp|aspx|exe|msi|cmd|bat|htaccess|htpasswd)\.">
+    Require all denied
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
